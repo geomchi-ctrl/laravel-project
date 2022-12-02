@@ -13,12 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Route::get('/main', function () {
+//     return view('main');
+// });
+
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/products', function () {
-    return view('products');
+    $busca = request('search');
+    return view('products', ['busca' => $busca]);
+});
+Route::get('/product/{id?}', function ($id = null) {
+    return view('product', ['id'=>$id]);
 });
